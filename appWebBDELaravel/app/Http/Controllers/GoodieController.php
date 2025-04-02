@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Goodie;
 use Illuminate\Http\Request;
 
 class GoodieController extends Controller
