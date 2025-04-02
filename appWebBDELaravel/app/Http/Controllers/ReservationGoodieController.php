@@ -11,7 +11,9 @@ class ReservationGoodieController extends Controller
      */
     public function index()
     {
-        //
+        $reservationsGoodies = ReservationGoodie::all();
+
+        return response()->json($reservationsGoodies);
     }
 
     /**
@@ -19,7 +21,15 @@ class ReservationGoodieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_id' => 'required|integer',
+            'goodie_id' => 'required|integer',
+            'quantite' => 'required|integer',
+        ]);
+
+        $reservationGoodie = ReservationGoodie::create($request->all());
+
+        return response()->json($reservationGoodie, 201);
     }
 
     /**
@@ -27,7 +37,13 @@ class ReservationGoodieController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $reservationGoodie = ReservationGoodie::find($id);
+
+        if (!$reservationGoodie) {
+            return response()->json(['message' => 'Reservation Goodie not found'], 404);
+        }
+
+        return response()->json($reservationGoodie);
     }
 
     /**
@@ -35,7 +51,21 @@ class ReservationGoodieController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'user_id' => 'integer',
+            'goodie_id' => 'integer',
+            'quantite' => 'integer',
+        ]);
+
+        $reservationGoodie = ReservationGoodie::find($id);
+
+        if (!$reservationGoodie) {
+            return response()->json(['message' => 'Reservation Goodie not found'], 404);
+        }
+
+        $reservationGoodie->update($request->all());
+
+        return response()->json($reservationGoodie);
     }
 
     /**
@@ -43,6 +73,14 @@ class ReservationGoodieController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $reservationGoodie = ReservationGoodie::find($id);
+
+        if (!$reservationGoodie) {
+            return response()->json(['message' => 'Reservation Goodie not found'], 404);
+        }
+
+        $reservationGoodie->delete();
+
+        return response()->json(['message' => 'Reservation Goodie deleted successfully']);
     }
 }

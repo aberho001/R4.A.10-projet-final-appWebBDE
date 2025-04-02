@@ -18,5 +18,15 @@ class Reservation extends Model
         'statut',
         'date_reservation',
     ];
+
+    public function soiree()
+    {
+        return $this->belongsTo(Soiree::class, 'id_soiree');
+    }
+
+    public function reservationGoodies()
+    {
+        return $this->hasMany(ReservationGoodie::class, 'id_reservation');
+    }
     
 }

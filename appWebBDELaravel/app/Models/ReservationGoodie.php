@@ -5,24 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Goodie extends Model
+class ReservationGoodie extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nom',
+        'id_goodie',
+        'id_reservation',
         'quantitee',
-        'description',
-        'cout',
     ];
 
-    public function reservations()
+    public function reservation()
     {
         return $this->belongsTo(Reservation::class);
     }
 
-    public function reservationGoodies()
+    public function goodie()
     {
-        return $this->hasMany(ReservationGoodie::class, 'id_goodie');
+        return $this->belongsTo(Goodie::class);
     }
 }
