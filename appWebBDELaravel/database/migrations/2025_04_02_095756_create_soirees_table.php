@@ -20,7 +20,6 @@ return new class extends Migration
             $table->decimal('prix', 8, 2);
             $table->integer('capacite');
             $table->string('theme');
-            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

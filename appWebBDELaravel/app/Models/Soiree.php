@@ -17,7 +17,6 @@ class Soiree extends Model
         'prix',
         'capacite',
         'theme',
-        'image',
     ];
 
     public function reservations()

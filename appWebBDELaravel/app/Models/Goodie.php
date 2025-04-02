@@ -12,7 +12,6 @@ class Goodie extends Model
     protected $fillable = [
         'nom',
         'quantitee',
-        'image',
         'description',
         'cout',
     ];

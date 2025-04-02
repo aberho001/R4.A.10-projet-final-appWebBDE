@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id("id_goodie");
             $table->string('nom');
             $table->string('quantitee');
-            $table->string('image')->nullable();
             $table->string('description');
             $table->decimal('cout', 8, 2);
             $table->timestamps();
