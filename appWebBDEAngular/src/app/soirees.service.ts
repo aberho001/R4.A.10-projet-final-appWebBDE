@@ -1,31 +1,43 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+export interface Soiree {
+  id: number;
+  nom: string;
+  lieu: string;
+  date: string;
+  heure: string;
+  prix: number;
+  capacite: number;
+  theme: string;
+}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class SoireesService {
+export class SoireeService {
+  private apiUrl = 'http://localhost:8000/api/soirees';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getSoirees() {
-    return this.http.get('http://localhost:8000/api/soirees');
+  getSoirees(): Observable<Soiree[]> {
+    return this.http.get<Soiree[]>(this.apiUrl);
   }
 
-  getSoiree(id: number) {
-    return this.http.get(`http://localhost:8000/api/soirees/${id}`);
+  getSoiree(id: number): Observable<Soiree> {
+    return this.http.get<Soiree>(`${this.apiUrl}/${id}`);
   }
 
-  createSoiree(soiree: any) {
-    return this.http.post('http://localhost:8000/api/soirees', soiree);
+  createSoiree(soiree: Soiree): Observable<Soiree> {
+    return this.http.post<Soiree>(this.apiUrl, soiree);
   }
 
-  updateSoiree(id: number, soiree: any) {
-    return this.http.put(`http://localhost:8000/api/soirees/${id}`, soiree);
+  updateSoiree(id: number, soiree: Soiree): Observable<Soiree> {
+    return this.http.put<Soiree>(`${this.apiUrl}/${id}`, soiree);
   }
 
-  deleteSoiree(id: number) {
-    return this.http.delete(`http://localhost:8000/api/soirees/${id}`);
+  deleteSoiree(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-  
 }

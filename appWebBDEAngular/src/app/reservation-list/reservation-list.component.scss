@@ -1,0 +1,54 @@
+// Variables (reprises du style existant)
+$primary-color: #ff6b6b;
+$secondary-color: #f4a261;
+$text-color: #090446;
+$light-color:  #F0F3F5;
+$border-radius: 10px;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+.container {
+  padding: 1.5rem 0;
+}
+
+.table-wrapper {
+  background-color: $light-color;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: $box-shadow;
+  border: none;
+  margin-bottom: 2rem;
+  
+  // Style du header avec gradient
+  &::before {
+    content: "Réservations";
+    display: block;
+    background: linear-gradient(45deg, $primary-color, $secondary-color);
+    color: $light-color;
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+}
+
+table {
+    width: 100%;
+    background-color: $light-color !important;
+    color: $text-color !important;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+mat-paginator {
+    background-color: $light-color !important;
+    color: $text-color !important;
+  }
+
+
+  .mat-table, .mat-header-cell, .mat-cell {
+    color: black !important;
+  }
+  

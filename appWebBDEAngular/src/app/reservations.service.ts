@@ -1,31 +1,45 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+export interface Reservation {
+  id: number;
+  nom: string;
+  email: string;
+  telephone: string;
+  id_soiree: number;
+  statut: 'en_attente' | 'valide' | 'annule';
+  date_reservation: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservationsService {
+  private apiUrl = 'http://localhost:8000/api/reservations'; // Remplace par l'URL de ton API Laravel
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getReservations() {
-    return this.http.get('http://localhost:8000/api/reservations');
+  getReservations(): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(this.apiUrl);
   }
 
-  getReservation(id: number) {
-    return this.http.get(`http://localhost:8000/api/reservations/${id}`);
+  getReservation(id: number): Observable<Reservation> {
+    return this.http.get<Reservation>(`${this.apiUrl}/${id}`);
   }
 
-  createReservation(reservation: any) {
-    return this.http.post('http://localhost:8000/api/reservations', reservation);
+  createReservation(reservation: Reservation): Observable<Reservation> {
+    return this.http.post<Reservation>(this.apiUrl, reservation);
   }
 
-  updateReservation(id: number, reservation: any) {
-    return this.http.put(`http://localhost:8000/api/reservations/${id}`, reservation);
+  updateReservation(id: number, reservation: Reservation): Observable<Reservation> {
+    return this.http.put<Reservation>(`${this.apiUrl}/${id}`, reservation);
   }
 
-  deleteReservation(id: number) {
-    return this.http.delete(`http://localhost:8000/api/reservations/${id}`);
+  deleteReservation(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
 }
+
+

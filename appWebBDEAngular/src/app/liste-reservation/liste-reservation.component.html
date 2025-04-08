@@ -1,1 +1,30 @@
-<p>liste-reservation works!</p>
+<mat-table [dataSource]="reservations">
+    <ng-container matColumnDef="nom">
+      <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+      <mat-cell *matCellDef="let reservation"> {{ reservation.nom }} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let reservation"> {{ reservation.email }} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="telephone">
+      <mat-header-cell *matHeaderCellDef> Téléphone </mat-header-cell>
+      <mat-cell *matCellDef="let reservation"> {{ reservation.telephone }} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="statut">
+      <mat-header-cell *matHeaderCellDef> Statut </mat-header-cell>
+      <mat-cell *matCellDef="let reservation"> {{ reservation.statut | titlecase }} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="date_reservation">
+      <mat-header-cell *matHeaderCellDef> Date de Réservation </mat-header-cell>
+      <mat-cell *matCellDef="let reservation"> {{ reservation.date_reservation | date: 'dd/MM/yyyy HH:mm' }} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  

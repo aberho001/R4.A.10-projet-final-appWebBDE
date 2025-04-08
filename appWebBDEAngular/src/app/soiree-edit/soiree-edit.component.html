@@ -1,0 +1,87 @@
+<div class="container mt-4">
+    <div class="soiree-form">
+      <div class="soiree-header">
+        <h2>Modifier la soirée</h2>
+      </div>
+      
+      <form [formGroup]="soireeForm" (ngSubmit)="onSubmit()">
+        <div class="soiree-info">
+          <!-- Informations personnelles -->
+          <div class="row g-4">
+            <div class="col-md-6 mb-4">
+              <label for="nom" class="form-label">Nom de la soirée</label>
+              <input 
+                type="text" 
+                class="form-control custom-input" 
+                id="nom" 
+                formControlName="nom" 
+                placeholder="Entrez le nom complet"
+              >
+            </div>
+            
+            <div class="col-md-6 mb-4">
+              <label for="lieu" class="form-label">Lieu</label>
+              <input 
+                type="text" 
+                class="form-control custom-input" 
+                id="lieu" 
+                formControlName="lieu" 
+                placeholder="exemple@email.com"
+              >
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <label for="prix" class="form-label">Prix</label>
+                <input 
+                  type="number" 
+                  class="form-control custom-input" 
+                  id="prix" 
+                  formControlName="prix" 
+                >
+              </div>
+            
+            
+            <div class="col-md-6 mb-4">
+                <label for="capacite_max" class="form-label">Capacité max</label>
+                <input 
+                  type="number" 
+                  class="form-control custom-input" 
+                  id="capacite_max" 
+                  formControlName="capacite_max" 
+                >
+              </div>
+            
+            <div class="col-md-6 mb-4">
+              <label for="date_heure" class="form-label">Date de réservation</label>
+              <input 
+                type="datetime-local" 
+                class="form-control custom-input" 
+                id="date_heure" 
+                formControlName="date_heure"
+              >
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <label for="theme" class="form-label">Thème</label>
+                <input 
+                  type="text" 
+                  class="form-control custom-input" 
+                  id="theme" 
+                  formControlName="theme" 
+                  placeholder="Soirée chique"
+                >
+              </div>
+          </div>
+        </div>
+        
+        <div class="soiree-actions">
+          <button type="submit" class="btn-ajouter-soiree">
+            <i class="bi bi-save me-2"></i>Enregistrer
+          </button>
+          <button type="button" class="btn-modifier" (click)="revenirAnciennePage()">
+            <i class="bi bi-arrow-left me-2"></i>Retour
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

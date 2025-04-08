@@ -15,6 +15,12 @@ import { AjouterSoireeComponent } from './ajouter-soiree/ajouter-soiree.componen
 import { ModifierSoireeComponent } from './modifier-soiree/modifier-soiree.component';
 import { ModifierReservationComponent } from './modifier-reservation/modifier-reservation.component';
 import { ModifierGoodieComponent } from './modifier-goodie/modifier-goodie.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { SoireeService } from './soirees.service';
+
 
 @NgModule({
   declarations: [
@@ -34,9 +40,12 @@ import { ModifierGoodieComponent } from './modifier-goodie/modifier-goodie.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
-  providers: [],
+  providers: [SoireeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
