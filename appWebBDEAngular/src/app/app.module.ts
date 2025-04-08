@@ -9,6 +9,12 @@ import { ReservationComponent } from './reservation/reservation.component';
 import { ListeReservationComponent } from './liste-reservation/liste-reservation.component';
 import { GoodieComponent } from './goodie/goodie.component';
 import { ListeGoodieComponent } from './liste-goodie/liste-goodie.component';
+import { AjouterGoodieComponent } from './ajouter-goodie/ajouter-goodie.component';
+import { AjouterReservationComponent } from './ajouter-reservation/ajouter-reservation.component';
+import { AjouterSoireeComponent } from './ajouter-soiree/ajouter-soiree.component';
+import { ModifierSoireeComponent } from './modifier-soiree/modifier-soiree.component';
+import { ModifierReservationComponent } from './modifier-reservation/modifier-reservation.component';
+import { ModifierGoodieComponent } from './modifier-goodie/modifier-goodie.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +24,13 @@ import { ListeGoodieComponent } from './liste-goodie/liste-goodie.component';
     ReservationComponent,
     ListeReservationComponent,
     GoodieComponent,
-    ListeGoodieComponent
+    ListeGoodieComponent,
+    AjouterGoodieComponent,
+    AjouterReservationComponent,
+    AjouterSoireeComponent,
+    ModifierSoireeComponent,
+    ModifierReservationComponent,
+    ModifierGoodieComponent
   ],
   imports: [
     BrowserModule,
