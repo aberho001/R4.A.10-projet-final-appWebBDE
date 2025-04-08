@@ -22,7 +22,7 @@ return new class extends Migration
                 'telephone',
                 20
             );
-            $table->foreignId('id_soiree')->constrained('soiree');
+            $table->foreignId('id_soiree')->reference('id')->on('soiree')->onDelete('cascade');
             $table->enum(
                 'statut',
                 ['en_attente', 'valide', 'annule']

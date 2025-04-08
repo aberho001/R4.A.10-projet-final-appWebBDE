@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('reservation_goodie', function (Blueprint $table) {
             $table->id(); // Crée une colonne 'id' auto-incrémentée
-            $table->foreignId('id_reservation')->constrained('reservations');
-            $table->foreignId('id_goodie')->constrained('goodies');
+            $table->foreignId('id_reservation')->reference('id')->on('reservations')->onDelete('cascade');
+            $table->foreignId('id_goodie')->reference('id')->on('goodies')->onDelete('cascade');
             $table->integer('quantitee');
             $table->timestamps();
         });
