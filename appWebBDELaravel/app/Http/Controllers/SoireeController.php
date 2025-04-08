@@ -14,7 +14,7 @@ class SoireeController extends Controller
     {
         $soirees = Soiree::all();
 
-        return reponse()->json($soirees);
+        return response()->json($soirees);
     }
 
     /**

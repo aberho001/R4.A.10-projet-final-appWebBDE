@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservation_goodies', function (Blueprint $table) {
+        Schema::create('reservation_goodie', function (Blueprint $table) {
             $table->id(); // Crée une colonne 'id' auto-incrémentée
             $table->foreignId('id_reservation')->constrained('reservations');
             $table->foreignId('id_goodie')->constrained('goodies');
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reservation_goodies');
+        Schema::dropIfExists('reservation_goodie');
     }
 };
