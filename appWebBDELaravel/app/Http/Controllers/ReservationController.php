@@ -12,9 +12,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::all();
-
-        return response()->json($reservations);
+        return response()->json(Reservation::all());
     }
 
     /**
@@ -22,14 +20,18 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'user_id' => 'required|integer',
-            'soiree_id' => 'required|integer',
-            'goodie_id' => 'required|integer',
-            'quantite' => 'required|integer',
+        $validated = $request->validate([
+            'nom' => 'required|string|max:255',
+            'email' => 'required|email|max:191|unique:reservations,email',
+            'telephone' => 'required|string|max:20',
+            'id_soiree' => 'required|exists:soirees,id',
+            'statut' => 'nullable|in:en_attente,valide,annule',
         ]);
 
-        $reservation = Reservation::create($request->all());
+        // Valeur par défaut si non fournie
+        $validated['statut'] = $validated['statut'] ?? 'en_attente';
+
+        $reservation = Reservation::create($validated);
 
         return response()->json($reservation, 201);
     }
@@ -53,20 +55,21 @@ class ReservationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'user_id' => 'integer',
-            'soiree_id' => 'integer',
-            'goodie_id' => 'integer',
-            'quantite' => 'integer',
-        ]);
-
         $reservation = Reservation::find($id);
 
         if (!$reservation) {
             return response()->json(['message' => 'Reservation not found'], 404);
         }
 
-        $reservation->update($request->all());
+        $validated = $request->validate([
+            'nom' => 'sometimes|required|string|max:255',
+            'email' => 'sometimes|required|email|max:191|unique:reservations,email,' . $id,
+            'telephone' => 'sometimes|required|string|max:20',
+            'id_soiree' => 'sometimes|required|exists:soirees,id',
+            'statut' => 'sometimes|required|in:en_attente,valide,annule',
+        ]);
+
+        $reservation->update($validated);
 
         return response()->json($reservation);
     }

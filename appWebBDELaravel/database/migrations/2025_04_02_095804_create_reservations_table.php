@@ -22,12 +22,13 @@ return new class extends Migration
                 'telephone',
                 20
             );
-            $table->foreignId('id_soiree')->reference('id')->on('soiree')->onDelete('cascade');
+            $table->foreignId('id_soiree')->reference('id')->on('soirees')->onDelete('cascade');
             $table->enum(
                 'statut',
                 ['en_attente', 'valide', 'annule']
             )->default('en_attente');
             $table->datetime('date_reservation')->useCurrent();
+            $table->timestamps();
         });
     }
 
