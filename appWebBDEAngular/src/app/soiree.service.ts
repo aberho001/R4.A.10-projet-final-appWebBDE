@@ -34,8 +34,8 @@ export class SoireeService {
   }
 
   // Mettre à jour une soirée existante
-  updateSoiree(soiree: Soiree): Observable<Soiree> {
-    return this.http.put<Soiree>(`${this.apiUrl}/${soiree.id}`, soiree);
+  updateSoiree(id: number, soiree: Soiree): Observable<Soiree> {
+    return this.http.put<Soiree>(`${this.apiUrl}/${id}`, soiree);
   }
 
   // Supprimer une soirée
