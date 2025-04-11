@@ -11,33 +11,33 @@ export class ReservationService {
 
   constructor(private http: HttpClient) { }
 
-  // Récupérer toutes les Reservation
+  // Récupérer toutes les réservations
   getReservations(): Observable<Reservation[]> {
     return this.http.get<Reservation[]>(this.apiUrl);
   }
 
-  // Récupérer une seule Reservation par ID
+  // Récupérer une seule réservation par ID
   getReservationById(id: number): Observable<Reservation> {
     return this.http.get<Reservation>(`${this.apiUrl}/${id}`);
   }
 
-  // Ajouter une nouvelle Reservation
+  // Ajouter une nouvelle réservation
   addReservation(reservation: Reservation): Observable<Reservation> {
     return this.http.post<Reservation>(this.apiUrl, reservation);
   }
 
-  // Mettre à jour une Reservation existante
-  updateReservation(reservation: Reservation): Observable<Reservation> {
-    return this.http.put<Reservation>(`${this.apiUrl}/${reservation.id}`, reservation);
+  // Mettre à jour une réservation existante
+  updateReservation(id: number, reservation: Reservation): Observable<Reservation> {
+    return this.http.put<Reservation>(`${this.apiUrl}/${id}`, reservation);
   }
 
-  // Supprimer une Reservation
+  // Supprimer une réservation
   deleteReservation(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  // Récupérer les réservations par ID de soirée
   getReservationsBySoireeId(soireeId: number): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(`${this.apiUrl}/soires/${soireeId}`);
+    return this.http.get<Reservation[]>(`${this.apiUrl}/soirees/${soireeId}`);
   }
-  
 }

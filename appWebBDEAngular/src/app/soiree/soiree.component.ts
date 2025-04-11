@@ -38,7 +38,7 @@ export class SoireeComponent implements OnInit {
   }
   onEdit(): void {
     if (this.soiree) {
-      this.router.navigate([`/soirees/edit/${this.soiree.id}`]);
+      this.router.navigate([`/soirees/modifier/${this.soiree.id}`]);
     } else {
       console.error("La soirée est introuvable !");
       alert("La soirée est introuvable.");
