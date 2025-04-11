@@ -9,7 +9,7 @@
     <ng-container matColumnDef="nom">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
       <td mat-cell *matCellDef="let reservation">
-        <a [routerLink]="['/reservations, reservations.id']" class="btn btn-link">{{ reservation.nom }}</a>
+        <a [routerLink]="['/reservations', reservation.id]" class="btn btn-link">{{ reservation.nom }}</a>
       </td>
     </ng-container>
   

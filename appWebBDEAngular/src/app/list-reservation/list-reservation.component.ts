@@ -3,7 +3,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ReservationService } from '../reservation.service'; 
-import { Soiree } from '../soiree.model';
 import { Reservation } from '../reservation.model';
 
 @Component({
