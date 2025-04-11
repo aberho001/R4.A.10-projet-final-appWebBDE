@@ -89,4 +89,14 @@ class ReservationController extends Controller
 
         return response()->json(['message' => 'Reservation deleted successfully']);
     }
+
+    /**
+     * Get the reservations for a specific soirée.
+     */
+    public function getReservationsBySoiree($id)
+    {
+        $reservations = Reservation::where('id_soiree', $id)->get();
+
+        return response()->json($reservations);
+    }
 }
