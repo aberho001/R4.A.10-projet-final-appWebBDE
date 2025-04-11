@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservation_goodie', function (Blueprint $table) {
+        Schema::create('reservation_goodies', function (Blueprint $table) {
             $table->id(); // Crée une colonne 'id' auto-incrémentée
             $table->foreignId('id_reservation')->reference('id')->on('reservations')->onDelete('cascade');
             $table->foreignId('id_goodie')->reference('id')->on('goodies')->onDelete('cascade');
