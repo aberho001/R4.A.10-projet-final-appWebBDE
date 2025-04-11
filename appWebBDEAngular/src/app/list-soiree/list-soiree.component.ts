@@ -13,7 +13,7 @@ import { Soiree } from '../soiree.model';
 })
 export class ListSoireeComponent implements OnInit {
   soirees: Soiree[] = [];
-  displayedColumns: string[] = ['nom', 'lieu', 'date', 'prix', 'capacite', 'theme'];
+  displayedColumns: string[] = ['nom', 'lieu', 'date', 'heure', 'prix', 'capacite', 'theme'];
   dataSource = new MatTableDataSource<Soiree>(this.soirees);
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;

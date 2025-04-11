@@ -21,6 +21,10 @@ import { MatTableModule } from '@angular/material/table';  // Import du module d
 import { MatPaginatorModule } from '@angular/material/paginator';  // Pour la pagination
 import { MatSortModule } from '@angular/material/sort';  // Pour le tri
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';  // Nécessaire pour les animations
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    BrowserAnimationsModule 
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
