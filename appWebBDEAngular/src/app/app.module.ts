@@ -17,6 +17,10 @@ import { GoodieComponent } from './goodie/goodie.component';
 import { ListGoodieComponent } from './list-goodie/list-goodie.component';
 import { AddGoodieComponent } from './add-goodie/add-goodie.component';
 import { EditGoodieComponent } from './edit-goodie/edit-goodie.component';
+import { MatTableModule } from '@angular/material/table';  // Import du module du tableau
+import { MatPaginatorModule } from '@angular/material/paginator';  // Pour la pagination
+import { MatSortModule } from '@angular/material/sort';  // Pour le tri
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';  // Nécessaire pour les animations
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { EditGoodieComponent } from './edit-goodie/edit-goodie.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule 
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    BrowserAnimationsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
