@@ -35,7 +35,11 @@
         </div>
       </div>
       <div class="card-footer text-center">
-        <a [routerLink]="['/soirees/modifier', soiree.id]">Modifier</a>
+        <!-- Bouton de modification -->
+        <button (click)="onEdit()" class="btn btn-primary mx-2">Modifier</button>
+
+        <!-- Bouton de suppression -->
+        <button (click)="onDelete()" class="btn btn-danger mx-2">Supprimer</button>
       </div>
     </div>
   </div>
