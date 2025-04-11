@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SoireeService } from '../soiree.service'; // Assurez-vous que le service est bien importé
+import { Soiree } from '../soiree.model';
 
 @Component({
   selector: 'app-list-soiree',
@@ -6,27 +8,19 @@ import { Component } from '@angular/core';
   templateUrl: './list-soiree.component.html',
   styleUrls: ['./list-soiree.component.scss']
 })
-export class ListSoireeComponent {
-  soirees = [
-    {
-      id: 1,
-      nom: 'Soirée de lancement',
-      lieu: 'Salle des fêtes',
-      date: '2025-05-01',
-      heure: '20:00:00',
-      prix: 15.00,
-      capacite: 100,
-      theme: 'Lancement du BDE'
-    },
-    {
-      id: 2,
-      nom: 'Soirée Halloween',
-      lieu: 'Club le 8',
-      date: '2025-10-31',
-      heure: '22:00:00',
-      prix: 10.00,
-      capacite: 200,
-      theme: 'Halloween'
-    }
-  ];
+export class ListSoireeComponent implements OnInit {
+  soirees: Soiree[] = [];
+
+  constructor(private soireeService: SoireeService) {}
+
+  ngOnInit(): void {
+    this.soireeService.getSoirees().subscribe({
+      next: (data) => {
+        this.soirees = data;
+      },
+      error: (err) => {
+        console.error('Erreur lors du chargement des soirées :', err);
+      }
+    });
+  }
 }

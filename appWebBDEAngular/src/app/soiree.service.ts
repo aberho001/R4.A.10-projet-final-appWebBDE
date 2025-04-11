@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Soiree } from './soiree.model';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,12 @@ export class SoireeService {
 
   // Récupérer toutes les soirées
   getSoirees(): Observable<Soiree[]> {
-    return this.http.get<Soiree[]>(this.apiUrl);
+    return this.http.get<Soiree[]>(this.apiUrl).pipe(
+      catchError(error => {
+        console.error('Erreur de récupération des soirées:', error);
+        return of([]); // Retourne un tableau vide en cas d'erreur
+      })
+    );
   }
 
   // Récupérer une seule soirée par ID
