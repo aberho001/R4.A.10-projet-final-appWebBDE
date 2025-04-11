@@ -1,40 +1,46 @@
 <table mat-table [dataSource]="dataSource" matSort>
+  <!-- Colonne pour le nom -->
+  <ng-container matColumnDef="nom">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+    <td mat-cell *matCellDef="let soiree">
+      <a [routerLink]="['/soirees', soiree.id]" class="btn btn-link">{{ soiree.nom }}</a>
+    </td>
+  </ng-container>
 
-    <ng-container matColumnDef="nom">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
-      <td mat-cell *matCellDef="let soiree"> {{soiree.nom}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="lieu">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Lieu </th>
-      <td mat-cell *matCellDef="let soiree"> {{soiree.lieu}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-      <td mat-cell *matCellDef="let soiree"> {{soiree.date}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="prix">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Prix </th>
-      <td mat-cell *matCellDef="let soiree"> {{soiree.prix}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="capacite">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Capacité </th>
-      <td mat-cell *matCellDef="let soiree"> {{soiree.capacite}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="theme">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Thème </th>
-      <td mat-cell *matCellDef="let soiree"> {{soiree.theme}} </td>
-    </ng-container>
-  
-    <!-- Header and row definitions -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  
-  <!-- Pagination controls -->
-  <mat-paginator [length]="soirees.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
-  
+  <!-- Colonne pour le lieu -->
+  <ng-container matColumnDef="lieu">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Lieu </th>
+    <td mat-cell *matCellDef="let soiree"> {{ soiree.lieu }} </td>
+  </ng-container>
+
+  <!-- Colonne pour la date -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+    <td mat-cell *matCellDef="let soiree"> {{ soiree.date }} </td>
+  </ng-container>
+
+  <!-- Colonne pour le prix -->
+  <ng-container matColumnDef="prix">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Prix </th>
+    <td mat-cell *matCellDef="let soiree"> {{ soiree.prix | currency }} </td>
+  </ng-container>
+
+  <!-- Colonne pour la capacité -->
+  <ng-container matColumnDef="capacite">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Capacité </th>
+    <td mat-cell *matCellDef="let soiree"> {{ soiree.capacite }} </td>
+  </ng-container>
+
+  <!-- Colonne pour le thème -->
+  <ng-container matColumnDef="theme">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Thème </th>
+    <td mat-cell *matCellDef="let soiree"> {{ soiree.theme }} </td>
+  </ng-container>
+
+  <!-- Définition de l'en-tête et des lignes -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<!-- Pagination -->
+<mat-paginator [length]="soirees.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
