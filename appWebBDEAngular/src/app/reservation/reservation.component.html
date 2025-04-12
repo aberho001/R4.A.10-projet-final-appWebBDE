@@ -1,6 +1,6 @@
 <div class="container my-5">
     <a [routerLink]="['/reservations']" class="btn btn-link">Retour à la liste</a>
-    
+  
     <!-- Afficher le message d'erreur si la reservation n'est pas trouvée -->
     <div *ngIf="errorMessage" class="alert alert-danger">
       <strong>Erreur :</strong> {{ errorMessage }}
@@ -10,7 +10,13 @@
     <div *ngIf="reservation" class="card">
       <div class="card-header">
         <h2>{{ reservation.nom }}</h2>
-        <p class="text-muted">Id soirée : {{ reservation.id_soiree }}</p>
+        <p class="text-muted">
+          Soirée :
+          <ng-container *ngIf="soiree; else loading">
+            <a [routerLink]="['/soirees', soiree.id]">{{ soiree.nom }}</a>
+          </ng-container>
+          <ng-template #loading>Chargement...</ng-template>
+        </p>
       </div>
       <div class="card-body">
         <div class="row">
@@ -20,12 +26,12 @@
           </div>
           <div class="col-md-6">
             <h5>Date de réservation :</h5>
-            <p>{{ reservation.date_reservation }}</p>
+            <p>{{ reservation.date_reservation | date:'short' }}</p>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
-            <h5>Telephone :</h5>
+            <h5>Téléphone :</h5>
             <p>{{ reservation.telephone }}</p>
           </div>
           <div class="col-md-6">
@@ -37,7 +43,7 @@
       <div class="card-footer text-center">
         <!-- Bouton de modification -->
         <button (click)="onEdit()" class="btn btn-primary mx-2">Modifier</button>
-
+  
         <!-- Bouton de suppression -->
         <button (click)="onDelete()" class="btn btn-danger mx-2">Supprimer</button>
       </div>

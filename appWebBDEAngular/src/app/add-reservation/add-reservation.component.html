@@ -1,1 +1,62 @@
-<p>add-reservation works!</p>
+<div class="container mt-5">
+    <a [routerLink]="['/reservations']" class="btn btn-link">Retour à la liste</a>
+  
+    <h2>Ajouter une réservation</h2>
+  
+    <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input id="nom" class="form-control" formControlName="nom" />
+        <div *ngIf="reservationForm.get('nom')?.invalid && reservationForm.get('nom')?.touched" class="text-danger">
+          Le nom est requis.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" class="form-control" formControlName="email" />
+        <div *ngIf="reservationForm.get('email')?.invalid && reservationForm.get('email')?.touched" class="text-danger">
+          Un email valide est requis.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="telephone">Téléphone</label>
+        <input id="telephone" class="form-control" formControlName="telephone" />
+        <div *ngIf="reservationForm.get('telephone')?.invalid && reservationForm.get('telephone')?.touched" class="text-danger">
+          Le téléphone est requis.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="id_soiree">Soirée</label>
+        <select id="id_soiree" class="form-control" formControlName="id_soiree">
+          <option value="" disabled selected>-- Choisissez une soirée --</option>
+          <option *ngFor="let soiree of soirees" [value]="soiree.id">
+            {{ soiree.nom }}
+          </option>
+        </select>
+        <div *ngIf="reservationForm.get('id_soiree')?.invalid && reservationForm.get('id_soiree')?.touched" class="text-danger">
+          La soirée est requise.
+        </div>
+      </div>
+      
+  
+      <div class="form-group">
+        <label for="statut">Statut</label>
+        <select id="statut" class="form-control" formControlName="statut">
+          <option value="">-- Sélectionner un statut --</option>
+          <option value="valide">Valide</option>
+          <option value="annule">Annulé</option>
+          <option value="en_attente">En attente</option>
+        </select>
+        <div *ngIf="reservationForm.get('statut')?.invalid && reservationForm.get('statut')?.touched" class="text-danger">
+          Le statut est requis.
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="reservationForm.invalid">Ajouter</button>
+    </form>
+  </div>
+  

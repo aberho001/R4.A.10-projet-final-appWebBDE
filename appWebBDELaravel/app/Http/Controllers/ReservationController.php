@@ -22,7 +22,7 @@ class ReservationController extends Controller
     {
         $validated = $request->validate([
             'nom' => 'required|string|max:255',
-            'email' => 'required|email|max:191|unique:reservations,email',
+            'email' => 'required|email|max:191',
             'telephone' => 'required|string|max:20',
             'id_soiree' => 'required|exists:soirees,id',
             'statut' => 'nullable|in:en_attente,valide,annule',
@@ -63,7 +63,7 @@ class ReservationController extends Controller
 
         $validated = $request->validate([
             'nom' => 'sometimes|required|string|max:255',
-            'email' => 'sometimes|required|email|max:191|unique:reservations,email,' . $id,
+            'email' => 'sometimes|required|email|max:191',
             'telephone' => 'sometimes|required|string|max:20',
             'id_soiree' => 'sometimes|required|exists:soirees,id',
             'statut' => 'sometimes|required|in:en_attente,valide,annule',

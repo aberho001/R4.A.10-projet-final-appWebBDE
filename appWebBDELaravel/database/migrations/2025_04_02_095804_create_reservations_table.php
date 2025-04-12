@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string(
                 'email',
                 191
-            )->unique();
+            );
             $table->string(
                 'telephone',
                 20

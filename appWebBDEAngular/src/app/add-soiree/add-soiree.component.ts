@@ -28,7 +28,7 @@ export class AddSoireeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Tu peux effectuer des actions à l'initialisation du composant, si besoin
+    
   }
 
   // Soumettre le formulaire
