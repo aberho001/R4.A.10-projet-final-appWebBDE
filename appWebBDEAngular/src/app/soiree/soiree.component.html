@@ -42,5 +42,61 @@
         <button (click)="onDelete()" class="btn btn-danger mx-2">Supprimer</button>
       </div>
     </div>
+
+    <h2>Liste des réservations</h2>
+    <div class="d-flex justify-content-between mb-3">
+        <a routerLink="/reservations/ajouter">Ajouter une reservation</a>
+    </div>
+  
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+  
+      <!-- Nom -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+        <td mat-cell *matCellDef="let reservation">
+            <a [routerLink]="['/reservations', reservation.id]" class="btn btn-link">{{ reservation.nom }}</a>
+        </td>
+      </ng-container>
+  
+      <!-- Email -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let reservation">{{ reservation.email }}</td>
+      </ng-container>
+  
+      <!-- Téléphone -->
+      <ng-container matColumnDef="telephone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Téléphone</th>
+        <td mat-cell *matCellDef="let reservation">{{ reservation.telephone }}</td>
+      </ng-container>
+  
+      <!-- Soirée -->
+      <ng-container matColumnDef="soiree">
+        <th mat-header-cell *matHeaderCellDef>Soirée</th>
+        <td mat-cell *matCellDef="let reservation">
+          <a [routerLink]="['/soirees', reservation.id_soiree]">
+            {{ getSoireeName(reservation.id_soiree) }}
+          </a>
+        </td>
+      </ng-container>
+  
+      <!-- Statut -->
+      <ng-container matColumnDef="statut">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Statut</th>
+        <td mat-cell *matCellDef="let reservation">{{ reservation.statut }}</td>
+      </ng-container>
+  
+      <!-- Date réservation -->
+      <ng-container matColumnDef="date_reservation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let reservation">{{ reservation.date_reservation | date:'short' }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
   </div>
+
   
