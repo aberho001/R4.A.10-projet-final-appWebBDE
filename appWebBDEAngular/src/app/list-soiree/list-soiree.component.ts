@@ -21,18 +21,25 @@ export class ListSoireeComponent implements OnInit {
 
   constructor(private soireeService: SoireeService) {}
 
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
   ngOnInit(): void {
-    this.soireeService.getSoirees().subscribe({
-      next: (data) => {
-        this.soirees = data;
-        this.dataSource.data = this.soirees;
-      },
-      error: (err) => {
-        console.error('Erreur lors du chargement des soirées :', err);
-      }
+    this.soireeService.getSoirees().subscribe((soirees) => {
+      this.soirees = soirees;
+      this.dataSource = new MatTableDataSource(this.soirees);
+      this.dataSource.paginator = this.paginator ?? null;
+      this.dataSource.sort = this.sort ?? null;
+  
+      this.dataSource.filterPredicate = (data, filter) => {
+        const dataStr = `${data.nom} ${data.lieu} ${data.date} ${data.heure} ${data.prix} ${data.capacite} ${data.theme}`.toLowerCase();
+        return dataStr.includes(filter);
+      };
     });
   }
-
+  
   ngAfterViewInit() {
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;

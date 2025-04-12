@@ -1,8 +1,14 @@
 <div class="container mt-4">
-    <h2>Liste des réservations</h2>
+    <h3>Liste des réservations</h3>
     <div class="d-flex justify-content-between mb-3">
         <a routerLink="/reservations/ajouter">Ajouter une reservation</a>
     </div>
+
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>Rechercher une réservation</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. : nom, email, téléphone...">
+      </mat-form-field>
+      
   
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
   

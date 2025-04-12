@@ -8,6 +8,8 @@ import { SoireeService } from '../soiree.service';
 import { Soiree } from '../soiree.model';
 import { forkJoin } from 'rxjs';
 
+
+
 @Component({
   selector: 'app-list-reservation',
   standalone: false,
@@ -15,6 +17,8 @@ import { forkJoin } from 'rxjs';
   styleUrl: './list-reservation.component.scss'
 })
 export class ListReservationComponent implements OnInit {
+
+  
   reservations: Reservation[] = [];
   soireesMap: Map<number, Soiree> = new Map();
   displayedColumns: string[] = ['nom', 'email', 'telephone', 'soiree', 'statut', 'date_reservation'];
@@ -28,7 +32,22 @@ export class ListReservationComponent implements OnInit {
     private soireeService: SoireeService
   ) {}
 
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
   ngOnInit(): void {
+    this.dataSource = new MatTableDataSource(this.reservations);
+    this.dataSource.paginator = this.paginator ?? null;
+    this.dataSource.sort = this.sort ?? null;
+  
+    this.dataSource.filterPredicate = (data, filter) => {
+      const soireeName = this.getSoireeName(data.id_soiree);
+      const dataStr = `${data.nom} ${data.email} ${data.telephone} ${data.date_reservation} ${data.statut} ${soireeName}`.toLowerCase();
+      return dataStr.includes(filter);
+    };
+  
     forkJoin({
       reservations: this.reservationservice.getReservations(),
       soirees: this.soireeService.getSoirees()

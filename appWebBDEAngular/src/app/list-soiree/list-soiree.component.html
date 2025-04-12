@@ -1,8 +1,14 @@
-<div class="mx-5">
+<div class="container mt-4">
   <h3>Liste des soirées</h3>
   <div class="d-flex justify-content-between mb-3">
     <a routerLink="/soirees/ajouter">Ajouter une soirée</a>
   </div>
+
+  <mat-form-field appearance="outline" class="w-100 mb-3">
+    <mat-label>Rechercher une soirée</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. : nom, lieu, thème...">
+  </mat-form-field>
+  
 
 <table mat-table [dataSource]="dataSource" matSort>
   <!-- Colonne pour le nom -->
